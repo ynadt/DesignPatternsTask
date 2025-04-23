@@ -1,20 +1,19 @@
 {
   "name": "shapes-app",
   "version": "1.0.0",
-  "type": "module",
   "engines": {
     "node": ">=16.0.0"
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./dist/main.js",
+      "types": "./dist/main.d.ts"
     }
   },
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
+    "start": "node dist/main.js",
+    "dev": "chcp 65001 > NUL && tsx src/main.ts",
     "build": "tsc",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
@@ -23,7 +22,8 @@
   },
   "dependencies": {
     "pino": "^8.17.0",
-    "pino-pretty": "^10.3.1"
+    "pino-pretty": "^10.3.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",

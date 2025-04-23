@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+//    "module": "NodeNext",
+//    "moduleResolution": "NodeNext",
+//    "module": "CommonJS",
+    "moduleResolution": "Node",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
@@ -10,6 +12,7 @@
     "skipLibCheck": true,
     "types": ["jest", "pino"],
     "moduleDetection": "force",
+//    "allowImportingTsExtensions": true,
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.test.ts"]
