@@ -1,6 +1,6 @@
 // src/services/parsing/file-reader.ts
 import fs from 'fs';
-import { ErrorHandler } from '../../core/error-handler';
+import { ErrorHandler } from '../../core/errors/error-handler';
 
 export function loadShapeDataFromFile(filePath: string, errorHandler?: ErrorHandler): string[] {
   try {

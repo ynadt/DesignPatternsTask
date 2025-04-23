@@ -1,4 +1,4 @@
-// src/core/errors.ts
+// src/core/errors/errors.ts
 
 export class InvalidShapeDataError extends Error {
   constructor(message: string) {

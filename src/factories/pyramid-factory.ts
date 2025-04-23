@@ -1,6 +1,6 @@
 import { Pyramid } from '../entities/3d/pyramid';
 import { ShapeFactory } from '../interfaces/shape-factory.interface';
-import { InvalidShapeDataError } from '../core/errors';
+import { InvalidShapeDataError } from '../core/errors/errors';
 import { Validator } from '../interfaces/validator.interface';
 import { PyramidData } from '../interfaces/pyramid-data.interface';
 import { PyramidDataParser } from '../services/parsing/pyramid-data-parser';

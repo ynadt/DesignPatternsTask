@@ -1,7 +1,7 @@
 import { Rectangle } from '../entities/2d/rectangle';
 import { ShapeFactory } from '../interfaces/shape-factory.interface';
 import { parsePoints } from '../services/parsing/point-parser';
-import { InvalidShapeDataError } from '../core/errors';
+import { InvalidShapeDataError } from '../core/errors/errors';
 import { Validator } from '../interfaces/validator.interface';
 import { Point } from '../entities/base/point';
 

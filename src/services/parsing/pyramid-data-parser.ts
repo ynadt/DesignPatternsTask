@@ -1,7 +1,7 @@
 // src/services/parsing/pyramid-data-parser.ts
 import { parsePoints } from './point-parser';
 import { PyramidData } from '../../interfaces/pyramid-data.interface';
-import { InvalidShapeDataError } from '../../core/errors';
+import { InvalidShapeDataError } from '../../core/errors/errors';
 
 export class PyramidDataParser {
   static parse(data: string): PyramidData {

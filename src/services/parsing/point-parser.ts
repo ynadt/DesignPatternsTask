@@ -1,5 +1,5 @@
 import { Point } from '../../entities/base/point';
-import { InvalidPointFormatError } from '../../core/errors';
+import { InvalidPointFormatError } from '../../core/errors/errors';
 import { PointValidator } from '../validation/point-validator';
 
 export function parsePoints(input: string, dim: number): Point[] {

@@ -1,9 +1,18 @@
 // src/services/geometry/rectangle-inspector.ts
-import { Point } from '../../entities/base/point';
 import { Rectangle } from '../../entities/2d/rectangle';
-import { angleBetween, areColinear, crossProductZ, getDistance } from '../../utils/geometry';
+import {
+  crossProductZ,
+  getDistance,
+  angleBetween,
+  areAllSidesEqual,
+  areSidesParallel,
+} from '../../utils/geometry';
 
 export class RectangleInspector {
+  /**
+   * Checks if all interior angles of the shape are approximately 90 degrees.
+   * This confirms that the shape is a rectangle (but not necessarily a square).
+   */
   isRectangle(rect: Rectangle): boolean {
     const points = rect.points;
     if (points.length !== 4) return false;
@@ -20,43 +29,33 @@ export class RectangleInspector {
     return true;
   }
 
+  /**
+   * A square is a rectangle where all sides are equal.
+   */
   isSquare(rect: Rectangle): boolean {
-    if (!this.isRectangle(rect)) return false;
-    const points = rect.points;
-
-    const side = getDistance(points[0], points[1]);
-    for (let i = 1; i < 4; i++) {
-      const current = getDistance(points[i], points[(i + 1) % 4]);
-      if (Math.abs(current - side) > 1e-6) return false;
-    }
-
-    return true;
+    return this.isRectangle(rect) && areAllSidesEqual(rect.points);
   }
 
+  /**
+   * A rhombus has all sides equal and is convex,
+   * but does not require all angles to be right angles.
+   */
   isRhombus(rect: Rectangle): boolean {
-    if (!this.isConvex(rect)) return false;
-    const points = rect.points;
-
-    const side = getDistance(points[0], points[1]);
-    for (let i = 1; i < 4; i++) {
-      const current = getDistance(points[i], points[(i + 1) % 4]);
-      if (Math.abs(current - side) > 1e-6) return false;
-    }
-
-    return true;
+    return this.isConvex(rect) && areAllSidesEqual(rect.points);
   }
 
+  /**
+   * A trapezoid has at least one pair of opposite sides that are parallel.
+   */
   isTrapezoid(rect: Rectangle): boolean {
     const p = rect.points;
-    const isParallel = (a: Point, b: Point, c: Point, d: Point) => {
-      const v1 = { x: b.get(0) - a.get(0), y: b.get(1) - a.get(1) };
-      const v2 = { x: d.get(0) - c.get(0), y: d.get(1) - c.get(1) };
-      return Math.abs(v1.x * v2.y - v1.y * v2.x) < 1e-6;
-    };
-
-    return isParallel(p[0], p[1], p[2], p[3]) || isParallel(p[1], p[2], p[3], p[0]);
+    return areSidesParallel(p[0], p[1], p[2], p[3]) || areSidesParallel(p[1], p[2], p[3], p[0]);
   }
 
+  /**
+   * Checks if the polygon is convex.
+   * All cross products between adjacent edge vectors must have the same sign.
+   */
   isConvex(rect: Rectangle): boolean {
     const points = rect.points;
     const n = points.length;
