@@ -1,5 +1,5 @@
 // src/services/handlers/pyramid-handler.ts
-import { Pyramid } from '../../entities/3d/pyramid';
+import { Pyramid } from '@src/entities/3d/pyramid';
 import { PyramidMathService } from '../geometry/pyramid-math';
 import { PyramidInspector } from '../geometry/pyramid-inspector';
 import { BaseShapeHandler } from './base-shape-handler';

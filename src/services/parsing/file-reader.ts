@@ -7,7 +7,7 @@ export function loadShapeDataFromFile(filePath: string, errorHandler?: ErrorHand
     const content = fs.readFileSync(filePath, 'utf-8');
     return content
       .split('\n')
-      .filter((line) => !line.startsWith('#'))
+      .filter((line) => !line.trimStart().startsWith('#'))
       .map((line) => line.trim())
       .filter(Boolean);
   } catch (error) {

@@ -1,6 +1,6 @@
 // src/core/errors/error-handler.ts
 import { Logger } from '../logger';
-import { ErrorContext } from '../../interfaces/error-context';
+import { ErrorContext } from '@src/interfaces/error-context';
 
 export class ErrorHandler {
   constructor(public readonly logger: typeof Logger) {}

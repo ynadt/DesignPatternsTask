@@ -2,7 +2,6 @@
 import { Rectangle } from '../../entities/2d/rectangle';
 import {
   crossProductZ,
-  getDistance,
   angleBetween,
   areAllSidesEqual,
   areSidesParallel,

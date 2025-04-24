@@ -1,6 +1,6 @@
-// src/core/default-error-handlers.ts
+// src/core/errors/default-error-handlers.ts
 import { InvalidShapeDataError, UnknownShapeTypeError, InvalidPointFormatError } from './errors';
-import { ErrorContext } from '../../interfaces/error-context';
+import { ErrorContext } from '@src/interfaces/error-context';
 import { Logger } from '../logger';
 
 export const defaultErrorHandlers: Array<

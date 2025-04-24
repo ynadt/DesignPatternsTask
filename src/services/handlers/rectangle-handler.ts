@@ -1,5 +1,5 @@
 // src/services/handlers/rectangle-handler.ts
-import { Rectangle } from '../../entities/2d/rectangle';
+import { Rectangle } from '@src/entities/2d/rectangle';
 import { BaseShapeHandler } from './base-shape-handler';
 import { RectangleMathService } from '../geometry/rectangle-math';
 import { RectangleInspector } from '../geometry/rectangle-inspector';

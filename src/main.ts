@@ -3,7 +3,7 @@ import { loadShapeDataFromFile } from './services/parsing/file-reader';
 import { Paths } from './config/paths';
 import { container } from './core/container';
 
-function run() {
+export function run(): void {
   const { shapeFacade, errorHandler } = container;
   const lines = loadShapeDataFromFile(Paths.shapesFile, errorHandler);
 
@@ -12,4 +12,6 @@ function run() {
   }
 }
 
-run();
+if (require.main === module) {
+  run();
+}

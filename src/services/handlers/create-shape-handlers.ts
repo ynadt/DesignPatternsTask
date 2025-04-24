@@ -1,5 +1,5 @@
-// src/core/shape-handlers.ts
-import { ShapeHandler } from '../../interfaces/shape-handler.interface';
+// src/handlers/create-shape-handlers.ts
+import { ShapeHandler } from '@src/interfaces/shape-handler.interface';
 import { RectangleHandler } from './rectangle-handler';
 import { PyramidHandler } from './pyramid-handler';
 import { RectangleMathService } from '../geometry/rectangle-math';
