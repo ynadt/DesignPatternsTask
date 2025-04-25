@@ -2,8 +2,8 @@
 import { CompositeValidator } from '../composite-validator';
 import { RectangleFormatValidator } from './rectangle-format-validator';
 import { RectangleGeometryValidator } from './rectangle-geometry-validator';
-import { Validator } from '../../../interfaces/validator.interface';
-import { Point } from '../../../entities/base/point';
+import { Validator } from '@src/interfaces/validator.interface';
+import { Point } from '@src/entities/base/point';
 
 export const rectangleValidator: Validator<Point[]> = new CompositeValidator([
   new RectangleFormatValidator(),

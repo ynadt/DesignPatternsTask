@@ -1,8 +1,8 @@
 // src/services/validation/rectangle/rectangle-format-validator.ts
-import { Validator } from '../../../interfaces/validator.interface';
-import { Point } from '../../../entities/base/point';
+import { Validator } from '@src/interfaces/validator.interface';
+import { Point } from '@src/entities/base/point';
 import { PointValidator } from '../point-validator';
-import { ValidationResult } from '../../../interfaces/validation-result.interface';
+import { ValidationResult } from '@src/interfaces/validation-result.interface';
 
 export class RectangleFormatValidator implements Validator<Point[]> {
   validate(points: Point[]): ValidationResult {

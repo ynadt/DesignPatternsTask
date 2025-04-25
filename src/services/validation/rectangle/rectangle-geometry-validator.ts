@@ -1,8 +1,8 @@
 // src/services/validation/rectangle/rectangle-geometry-validator.ts
-import { Validator } from '../../../interfaces/validator.interface';
-import { Point } from '../../../entities/base/point';
+import { Validator } from '@src/interfaces/validator.interface';
+import { Point } from '@src/entities/base/point';
 import { RectangleInspector } from '../../geometry/rectangle-inspector';
-import { ValidationResult } from '../../../interfaces/validation-result.interface';
+import { ValidationResult } from '@src/interfaces/validation-result.interface';
 
 export class RectangleGeometryValidator implements Validator<Point[]> {
   private readonly inspector = new RectangleInspector();

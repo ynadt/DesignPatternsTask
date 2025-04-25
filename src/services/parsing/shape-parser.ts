@@ -1,7 +1,7 @@
 // src/services/parsing/shape-parser.ts
-import { ShapeFactoryRegistry } from '../../factories/shape-factory-registry';
-import { Shape } from '../../entities/base/shape';
-import { UnknownShapeTypeError } from '../../core/errors/errors';
+import { ShapeFactoryRegistry } from '@src/factories/shape-factory-registry';
+import { Shape } from '@src/entities/base/shape';
+import { UnknownShapeTypeError } from '@src/core/errors/errors';
 import { extractShapeMetadata } from './shape-metadata';
 
 /**

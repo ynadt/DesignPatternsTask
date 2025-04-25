@@ -1,5 +1,5 @@
 // src/services/validation/point-validator.ts
-import { Point } from '../../entities/base/point';
+import { Point } from '@src/entities/base/point';
 
 export class PointValidator {
   static isValid(point: Point, expectedDim: number): boolean {

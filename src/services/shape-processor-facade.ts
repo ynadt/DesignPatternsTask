@@ -4,14 +4,10 @@ import { ShapeProcessorService } from './shape-processor-service';
 import { ErrorHandler } from '../core/errors/error-handler';
 import { Logger } from '@src/core/logger';
 
-/**
- * Facade that coordinates parsing and processing of shape lines,
- * and handles logging and error reporting.
- */
 export class ShapeProcessorFacade {
   constructor(
-    private readonly parser: ShapeParser, // Responsible for parsing a line into a Shape object
-    private readonly processor: ShapeProcessorService, // Responsible for delegating processing to appropriate ShapeHandler
+    private readonly parser: ShapeParser,
+    private readonly processor: ShapeProcessorService,
     private readonly errorHandler: ErrorHandler,
     private readonly logger: typeof Logger,
   ) {}

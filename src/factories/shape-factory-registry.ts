@@ -1,5 +1,4 @@
 // src/factories/shape-factory-registry.ts
-
 import { ShapeFactory } from '../interfaces/shape-factory.interface';
 
 export class ShapeFactoryRegistry {
