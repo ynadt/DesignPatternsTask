@@ -2,6 +2,7 @@
 import { ShapeParser } from './parsing/shape-parser';
 import { ShapeProcessorService } from './shape-processor-service';
 import { ErrorHandler } from '../core/errors/error-handler';
+import { Logger } from '@src/core/logger';
 
 /**
  * Facade that coordinates parsing and processing of shape lines,
@@ -11,7 +12,8 @@ export class ShapeProcessorFacade {
   constructor(
     private readonly parser: ShapeParser, // Responsible for parsing a line into a Shape object
     private readonly processor: ShapeProcessorService, // Responsible for delegating processing to appropriate ShapeHandler
-    private readonly errorHandler: ErrorHandler, // Handles errors and logs results
+    private readonly errorHandler: ErrorHandler,
+    private readonly logger: typeof Logger,
   ) {}
 
   /**
@@ -26,7 +28,7 @@ export class ShapeProcessorFacade {
     try {
       const shape = this.parser.parse(line);
       const result = this.processor.process(shape);
-      this.errorHandler.logger.info(result);
+      this.logger.info(result);
     } catch (e) {
       this.errorHandler.handle(e, { line });
     }

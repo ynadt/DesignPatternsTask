@@ -1,21 +1,17 @@
 // src/services/parsing/file-reader.ts
-import fs from 'fs';
-import { ErrorHandler } from '../../core/errors/error-handler';
+import { ErrorHandler } from '@src/core/errors/error-handler';
+import { readFileContent } from '@src/utils/parsing/read-file-content';
+import { parseLines } from '@src/utils/parsing/parse-lines';
 
 export function loadShapeDataFromFile(filePath: string, errorHandler?: ErrorHandler): string[] {
   try {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    return content
-      .split('\n')
-      .filter((line) => !line.trimStart().startsWith('#'))
-      .map((line) => line.trim())
-      .filter(Boolean);
+    const content = readFileContent(filePath);
+    return parseLines(content);
   } catch (error) {
     if (errorHandler) {
       errorHandler.handle(error, { file: filePath });
-    } else {
-      throw error;
+      return [];
     }
-    return [];
+    throw error;
   }
 }

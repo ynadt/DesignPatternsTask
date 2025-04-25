@@ -1,6 +1,6 @@
 // src/services/geometry/pyramid-inspector.ts
-import { Pyramid } from '../../entities/3d/pyramid';
-import { EPSILON } from '../../utils/geometry';
+import { Pyramid } from '@src/entities/3d/pyramid';
+import { EPSILON } from '@src/utils/geometry';
 
 export class PyramidInspector {
   /**

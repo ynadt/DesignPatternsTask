@@ -1,6 +1,6 @@
 // src/services/validation/composite-validator.ts
-import { Validator } from '../../interfaces/validator.interface';
-import { ValidationResult } from '../../interfaces/validation-result.interface';
+import { Validator } from '@src/interfaces/validator.interface';
+import { ValidationResult } from '@src/interfaces/validation-result.interface';
 
 export class CompositeValidator<T> implements Validator<T> {
   constructor(private readonly validators: Validator<T>[]) {}

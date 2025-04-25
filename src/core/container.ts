@@ -20,7 +20,7 @@ export const container = (() => {
   const handlers = createShapeHandlers();
   const shapeProcessor = new ShapeProcessorService(handlers);
 
-  const shapeFacade = new ShapeProcessorFacade(shapeParser, shapeProcessor, errorHandler);
+  const shapeFacade = new ShapeProcessorFacade(shapeParser, shapeProcessor, errorHandler, Logger);
 
   return {
     logger: Logger,
