@@ -2,6 +2,12 @@ import { Rectangle } from '@src/entities/2d/rectangle';
 import { Point } from '@src/entities/base/point';
 import { RectangleInspector } from '@src/services/geometry/rectangle-inspector';
 
+function createRectangleWithoutValidation(points: Point[]): Rectangle {
+  const rect = Object.create(Rectangle.prototype) as Rectangle;
+  (rect as any)._points = points;
+  return rect;
+}
+
 describe('RectangleInspector', () => {
   const inspector = new RectangleInspector();
 
@@ -39,7 +45,7 @@ describe('RectangleInspector', () => {
   });
 
   test('isTrapezoid returns true for trapezoid', () => {
-    const trapezoid = new Rectangle([
+    const trapezoid = createRectangleWithoutValidation([
       new Point(0, 0),
       new Point(1, 2),
       new Point(3, 2),
@@ -50,7 +56,7 @@ describe('RectangleInspector', () => {
   });
 
   test('isConvex returns true for convex quadrilateral', () => {
-    const convex = new Rectangle([
+    const convex = createRectangleWithoutValidation([
       new Point(0, 0),
       new Point(1, 2),
       new Point(3, 2),
@@ -61,7 +67,7 @@ describe('RectangleInspector', () => {
   });
 
   test('isConvex returns false for concave quadrilateral', () => {
-    const concave = new Rectangle([
+    const concave = createRectangleWithoutValidation([
       new Point(0, 0),
       new Point(2, 2),
       new Point(1, 1),

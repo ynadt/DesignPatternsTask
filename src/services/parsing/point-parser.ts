@@ -10,7 +10,7 @@ export function parsePoints(input: string, dim: number): Point[] {
       .map((s) => s.trim());
 
     if (!PointValidator.hasValidFormat(coords, dim)) {
-      throw new InvalidPointFormatError(`Неверный формат ${dim}D-точки: "${part}"`);
+      throw new InvalidPointFormatError(`Invalid ${dim}D point format: "${part}"`);
     }
 
     const values = coords.map(parseFloat);

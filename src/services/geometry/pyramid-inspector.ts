@@ -1,6 +1,7 @@
 // src/services/geometry/pyramid-inspector.ts
 import { Pyramid } from '@src/entities/3d/pyramid';
 import { EPSILON } from '@src/utils/geometry';
+import { PyramidData } from '@src/interfaces/pyramid-data.interface';
 
 export class PyramidInspector {
   /**
@@ -10,18 +11,28 @@ export class PyramidInspector {
    * - apex is not coplanar with base.
    */
   isValidPyramid(pyramid: Pyramid): boolean {
-    const base = pyramid.basePoints;
-    const apex = pyramid.apex;
+    return this.isValidPyramidData({ base: pyramid.basePoints, apex: pyramid.apex });
+  }
+
+  /**
+   * Validates pyramid data (without creating a Pyramid instance).
+   */
+  isValidPyramidData(data: PyramidData): boolean {
+    const { base, apex } = data;
 
     if (base.length < 3) return false;
 
     const unique = new Set(base.map((p) => p.toString()));
     if (unique.size !== base.length) return false;
 
+    const dim = apex.dimension;
+    if (!base.every((p) => p.dimension === dim)) return false;
+
     const baseZ = base.map((p) => p.get(2) ?? 0);
     const apexZ = apex.get(2) ?? 0;
 
-    return baseZ.some((z) => Math.abs(z - apexZ) > EPSILON);
+    const apexOutOfPlane = baseZ.some((z) => Math.abs(z - apexZ) > EPSILON);
+    return apexOutOfPlane;
   }
 
   /**

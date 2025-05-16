@@ -1,8 +1,8 @@
-import { RectangleGeometryValidator } from '@src/services/validation/rectangle/rectangle-geometry-validator';
 import { Point } from '@src/entities/base/point';
+import { rectangleValidator } from '@src/services/validation/rectangle/rectangle-validator';
 
 describe('RectangleGeometryValidator', () => {
-  const validator = new RectangleGeometryValidator();
+  const validator = rectangleValidator;
 
   test('returns valid for a rectangle with 90-degree angles', () => {
     const points = [new Point(0, 0), new Point(0, 2), new Point(2, 2), new Point(2, 0)];
@@ -19,7 +19,7 @@ describe('RectangleGeometryValidator', () => {
 
     expect(result).toEqual({
       isValid: false,
-      reason: 'Points do not form a valid rectangle',
+      reason: 'Rectangle must have all 90-degree angles',
     });
   });
 });

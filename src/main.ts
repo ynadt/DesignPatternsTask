@@ -4,12 +4,15 @@ import { Paths } from './config/paths';
 import { container } from './core/container';
 
 export function run(): void {
-  const { shapeFacade, errorHandler } = container;
+  const { shapeFacade, errorHandler, repository, warehouse } = container;
   const lines = loadShapeDataFromFile(Paths.shapesFile, errorHandler);
 
   for (const line of lines) {
     shapeFacade.processLine(line);
   }
+
+  console.log(repository.getAll());
+  console.log(warehouse.getAll());
 }
 
 if (require.main === module) {

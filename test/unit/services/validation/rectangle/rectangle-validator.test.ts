@@ -25,6 +25,6 @@ describe('rectangleValidator (composite)', () => {
     const result = rectangleValidator.validate(points);
 
     expect(result.isValid).toBe(false);
-    expect(result.reason).toBe('Points do not form a valid rectangle');
+    expect(result.reason).toBe('Rectangle must have all 90-degree angles');
   });
 });

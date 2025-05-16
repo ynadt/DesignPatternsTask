@@ -1,5 +1,8 @@
 // src/utils/geometry.ts
 import { Point } from '../entities/base/point';
+import { Shape } from '@src/entities/base/shape';
+import { Rectangle } from '@src/entities/2d/rectangle';
+import { Pyramid } from '@src/entities/3d/pyramid';
 
 export const EPSILON = 1e-6;
 
@@ -94,4 +97,22 @@ export function areSidesParallel(a: Point, b: Point, c: Point, d: Point): boolea
   const v1 = { x: b.get(0) - a.get(0), y: b.get(1) - a.get(1) };
   const v2 = { x: d.get(0) - c.get(0), y: d.get(1) - c.get(1) };
   return Math.abs(v1.x * v2.y - v1.y * v2.x) < EPSILON;
+}
+
+export function getFirstPointX(shape: Shape): number {
+  if (shape instanceof Rectangle) {
+    return shape.points[0].get(0);
+  } else if (shape instanceof Pyramid) {
+    return shape.basePoints[0].get(0);
+  }
+  return 0; // для неизвестных фигур — 0
+}
+
+export function getFirstPointY(shape: Shape): number {
+  if (shape instanceof Rectangle) {
+    return shape.points[0].get(1);
+  } else if (shape instanceof Pyramid) {
+    return shape.basePoints[0].get(1);
+  }
+  return 0;
 }

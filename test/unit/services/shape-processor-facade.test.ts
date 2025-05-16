@@ -4,6 +4,9 @@ import { Logger as PinoLogger } from 'pino';
 import { ShapeParser } from '@src/services/parsing/shape-parser';
 import { ShapeProcessorService } from '@src/services/shape-processor-service';
 import { ErrorHandler } from '@src/core/errors/error-handler';
+import { ShapeRepository } from '@src/domain/repositories/shape-repository';
+import { Warehouse } from '@src/domain/repositories/warehouse';
+import { ShapeObserver } from '@src/domain/observers/shape-observer';
 
 describe('ShapeProcessorFacade', () => {
   const logMock = {
@@ -16,6 +19,18 @@ describe('ShapeProcessorFacade', () => {
     level: 'info',
     child: jest.fn(() => logMock),
   } as unknown as PinoLogger;
+
+  const mockRepository = {
+    add: jest.fn(),
+    remove: jest.fn(),
+  } as unknown as ShapeRepository;
+
+  const mockWarehouse = {
+    add: jest.fn(),
+    remove: jest.fn(),
+  } as unknown as Warehouse;
+
+  const mockObserver = {} as ShapeObserver;
 
   test('logs result of processed shape', () => {
     class TestShape extends Shape {
@@ -30,11 +45,18 @@ describe('ShapeProcessorFacade', () => {
 
     const parser = { parse: parseMock } as unknown as ShapeParser;
     const processor = { process: processMock } as unknown as ShapeProcessorService;
-    const errorHandler = {
-      handle: jest.fn(),
-    } as unknown as ErrorHandler;
+    const errorHandler = { handle: jest.fn() } as unknown as ErrorHandler;
 
-    const facade = new ShapeProcessorFacade(parser, processor, errorHandler, logMock);
+    const facade = new ShapeProcessorFacade(
+      parser,
+      processor,
+      errorHandler,
+      logMock,
+      mockRepository,
+      mockWarehouse,
+      mockObserver,
+    );
+
     facade.processLine('DUMMY 1,2');
 
     expect(parseMock).toHaveBeenCalledWith('DUMMY 1,2');
@@ -51,15 +73,19 @@ describe('ShapeProcessorFacade', () => {
       }),
     } as unknown as ShapeParser;
 
-    const processor = {
-      process: jest.fn(),
-    } as unknown as ShapeProcessorService;
+    const processor = { process: jest.fn() } as unknown as ShapeProcessorService;
+    const errorHandler = { handle: jest.fn() } as unknown as ErrorHandler;
 
-    const errorHandler = {
-      handle: jest.fn(),
-    } as unknown as ErrorHandler;
+    const facade = new ShapeProcessorFacade(
+      parser,
+      processor,
+      errorHandler,
+      logMock,
+      mockRepository,
+      mockWarehouse,
+      mockObserver,
+    );
 
-    const facade = new ShapeProcessorFacade(parser, processor, errorHandler, logMock);
     facade.processLine('INVALID');
 
     expect(errorHandler.handle).toHaveBeenCalledWith(error, { line: 'INVALID' });

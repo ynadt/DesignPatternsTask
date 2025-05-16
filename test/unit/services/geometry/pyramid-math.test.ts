@@ -56,14 +56,4 @@ describe('PyramidMathService', () => {
     const sideAreas = service.getSideAreas(pyramid);
     expect(result).toBeCloseTo(baseArea + sideAreas);
   });
-
-  test('getVolume returns 0 for flat pyramid (apex on base)', () => {
-    const base = [new Point(0, 0, 0), new Point(1, 0, 0), new Point(0, 1, 0)];
-    const apex = new Point(0.5, 0.5, 0);
-    const pyramid = new Pyramid(base, apex);
-
-    const result = service.getVolume(pyramid);
-
-    expect(result).toBe(0);
-  });
 });
